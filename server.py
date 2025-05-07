@@ -105,4 +105,13 @@ class TupleSpace:
        finally:
         client_socket.close()
         #Perform an operation on the tuple space based on the command received from the client, and send the result back to the client in a response message in a specific format
-        
+
+    def main():
+       port = 51234
+       tuple_space = TupleSpace()
+       server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+       server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+       server_socket.bind(('0.0.0.0', port))
+       server_socket.listen(5)
+       print(f"Server listening on port {port}") 
+       # The main function is to create and start a TCP server, listen on the specified port, and wait for the client to connect  
