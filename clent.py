@@ -44,4 +44,7 @@ def main():
                 #Read each line in a given file, parse it into commands, keys, and values, construct a request and send it to the server, handle any possible key-value length exceeding the limit, and print the request and the corresponding server response
     finally:
         client_socket.close()   
-        #It ensures the correct release of resources and the normal management of network connections        
+        #It ensures the correct release of resources and the normal management of network connections
+if __name__ == "__main__":
+    main()
+    #A complete TCP client program is implemented that is able to communicate with the server, process requests in files, and display the server's response                
