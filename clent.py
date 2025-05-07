@@ -18,3 +18,7 @@ def main():
     port = int(sys.argv[2])
     request_file = sys.argv[3]
 #A function called main is defined, which is the main function of the client program, which is mainly responsible for handling command-line arguments, verifying the number of arguments, and extracting the required information from the command line
+
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client_socket.connect((hostname, port))
+    #Create a client socket based on IPv4 and TCP protocols and use that socket to attempt to connect to the server on the specified host and port
