@@ -129,3 +129,6 @@ class TupleSpace:
           client_thread = threading.Thread(target = handle_client, args = (client_socket, tuple_space))
           client_thread.start()
           #Periodically prints statistics for the tuple space, continuously listens for client connections and creates a new thread for each client to process requests
+    if __name__ == "__main__":
+         main()      
+         #Make sure that the code executes specific logic when running as the main program
