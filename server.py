@@ -22,3 +22,11 @@ class TupleSpace:
         self.put_count += 1
         return 0    
     #Inserts a new key-value pair into the tuple space
+
+    def read(self, key):
+        if key not in self.tuples:
+            self.error_count += 1
+            return ""
+        self.read_count += 1
+        return self.tuples[key]
+    #Reads the value of the specified key from the tuple space
