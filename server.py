@@ -83,3 +83,26 @@ class TupleSpace:
                 tuple_space.operation_count += 1
                 response = ""   
                 #Client connection counting, continuous receipt of client data, parsing data, and operation counting are done
+                if command == 'R':
+                    result = tuple_space.read(key)
+                    if result:
+                        response = f"{str(len(f'OK ({key}, {result}) read')).zfill(3)} OK ({key}, {result}) read"
+                    else:
+                       response = f"{str(len(f'ERR {key} does not exist')).zfill(3)} ERR {key} does not exist"
+                elif command == 'G':
+                    result = tuple_space.get(key)
+                    if result:
+                        response = f"{str(len(f'OK ({key}, {result}) removed')).zfill(3)} OK ({key}, {result}) removed"
+                    else:
+                        response = f"{str(len(f'ERR {key} does not exist')).zfill(3)} ERR {key} does not exist"
+                elif command == 'P':
+                    result = tuple_space.put(key, value)
+                    if result == 0:
+                         response = f"{str(len(f'OK ({key}, {value}) added')).zfill(3)} OK ({key}, {value}) added"
+                    else:
+                         response = f"{str(len(f'ERR {key} already exists')).zfill(3)} ERR {key} already exists"
+                client_socket.send(response.encode('utf - 8'))
+       finally:
+        client_socket.close()
+        #Perform an operation on the tuple space based on the command received from the client, and send the result back to the client in a response message in a specific format
+        
