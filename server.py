@@ -30,3 +30,12 @@ class TupleSpace:
         self.read_count += 1
         return self.tuples[key]
     #Reads the value of the specified key from the tuple space
+
+    def get(self, key):
+        if key not in self.tuples:
+            self.error_count += 1
+            return ""
+        value = self.tuples.pop(key)
+        self.get_count += 1
+        return value
+    #Removes the key-value pair with the specified key from the tuple space and returns its value
