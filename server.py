@@ -114,4 +114,18 @@ class TupleSpace:
        server_socket.bind(('0.0.0.0', port))
        server_socket.listen(5)
        print(f"Server listening on port {port}") 
-       # The main function is to create and start a TCP server, listen on the specified port, and wait for the client to connect  
+       # The main function is to create and start a TCP server, listen on the specified port, and wait for the client to connect
+       def print_summary_periodically():
+           while True:
+              time.sleep(10)
+              tuple_space.print_summary()
+
+       summary_thread = threading.Thread(target = print_summary_periodically)
+       summary_thread.daemon = True
+       summary_thread.start()
+
+       while True:
+          client_socket, client_address = server_socket.accept()
+          client_thread = threading.Thread(target = handle_client, args = (client_socket, tuple_space))
+          client_thread.start()
+          #Periodically prints statistics for the tuple space, continuously listens for client connections and creates a new thread for each client to process requests
