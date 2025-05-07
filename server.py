@@ -66,3 +66,20 @@ class TupleSpace:
               f"Total PUTs: {self.put_count}, "
               f"Total Errors: {self.error_count}")
         #Prints the summary in a formatted way
+
+
+
+    def handle_client(client_socket, tuple_space):
+       tuple_space.client_count += 1
+       try:
+           while True:
+                data = client_socket.recv(1024).decode('utf - 8')
+                if not data:
+                  break
+                message_size = int(data[:3])
+                command = data[3]
+                key = data[4:message_size - 1] if command != 'P' else data[4:message_size - len(data.split(' ')[-1]) - 2]
+                value = data.split(' ')[-1] if command == 'P' else ""
+                tuple_space.operation_count += 1
+                response = ""   
+                #Client connection counting, continuous receipt of client data, parsing data, and operation counting are done
