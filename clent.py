@@ -42,3 +42,6 @@ def main():
                 response = send_request(client_socket, request)
                 print(f"{line}: {response}")
                 #Read each line in a given file, parse it into commands, keys, and values, construct a request and send it to the server, handle any possible key-value length exceeding the limit, and print the request and the corresponding server response
+    finally:
+        client_socket.close()   
+        #It ensures the correct release of resources and the normal management of network connections        
