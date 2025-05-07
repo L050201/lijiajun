@@ -54,3 +54,15 @@ class TupleSpace:
             avg_key_size = total_key_size / tuple_count
             avg_value_size = total_value_size / tuple_count
             #Prints statistics for the tuple space, including the number of tuples, the average tuple size, the average key size, the average size, as well as the number of clients, the total number of operations, the number of executions of different operations, and the number of errors
+        print(f"Tuple Space Summary - "
+              f"Tuples: {tuple_count}, "
+              f"Avg Tuple Size: {avg_tuple_size}, "
+              f"Avg Key Size: {avg_key_size}, "
+              f"Avg Value Size: {avg_value_size}, "
+              f"Total Clients: {self.client_count}, "
+              f"Total Operations: {self.operation_count}, "
+              f"Total READs: {self.read_count}, "
+              f"Total GETs: {self.get_count}, "
+              f"Total PUTs: {self.put_count}, "
+              f"Total Errors: {self.error_count}")
+        #Prints the summary in a formatted way
